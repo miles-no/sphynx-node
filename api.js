@@ -6,7 +6,6 @@ app.get('/pages/:path', (req, res) => {
   res.status(200).json({
     path: '/',
     layout: 'layout.hbs',
-    adminLayout: 'layout.hbs',
     modules: [{
       key: 'module1',
       id: '1',
@@ -22,13 +21,53 @@ app.get('/moduledefinitions', (req, res) => {
   res.status(200).json([{
     key: 'module1',
     name: 'Module 1',
-    url: 'http://localhost:3001/module1',
-    adminUrl: 'http://localhost:3001/module1/admin',
+    live: {
+      url: 'http://localhost:3001/module1',
+      headerAssets: [
+        'http://example.com/css1.css',
+        'http://example.com/css2.css',
+      ],
+      footerAssets: [
+        'http://example.com/js1.js',
+        'http://example.com/js2.js',
+      ],
+    },
+    admin: {
+      url: 'http://localhost:3001/module1/admin',
+      headerAssets: [
+        'http://example.com/css1.css',
+        'http://example.com/css2.css',
+      ],
+      footerAssets: [
+        'http://example.com/js1.js',
+        'http://example.com/js2.js',
+      ],
+    },
   }, {
     key: 'module2',
     name: 'Module 2',
-    url: 'http://localhost:3001/module2',
-    adminUrl: 'http://localhost:3001/module2/admin',
+    live: {
+      url: 'http://localhost:3001/module2',
+      headerAssets: [
+        'http://example.com/css1.css',
+        'http://example.com/css3.css',
+      ],
+      footerAssets: [
+        'http://example.com/js2.js',
+        'http://example.com/js3.js',
+      ],
+    },
+    admin: {
+      url: 'http://localhost:3001/module2/admin',
+      headerAssets: [
+        'http://example.com/css1.css',
+        'http://example.com/css3.css',
+      ],
+      footerAssets: [
+        'http://example.com/js2.js',
+        'http://example.com/js3.js',
+      ],
+    }
   }]);
 });
 

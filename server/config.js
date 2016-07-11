@@ -4,13 +4,25 @@ const config = {
   // Determine which template to load for a page.
   // This can be customized to your own taste.
   resolveTemplateName(page, req) {
-    return req.isAuthenticated() ? page.adminLayout : page.layout;
+    return req.isAuthenticated() ? page.layout : page.layout;
   },
 
   // Determine which url to fetch a module from.
   // This can be customized to your own taste.
   resolveModuleUrl(moduleDefinition, req) {
-    return req.isAuthenticated() ? moduleDefinition.adminUrl : moduleDefinition.url;
+    return req.isAuthenticated() ? moduleDefinition.admin.url : moduleDefinition.live.url;
+  },
+
+  resolveHeaderAssets(moduleDefinition, req) {
+    return req.isAuthenticated() ?
+      moduleDefinition.admin.headerAssets || [] :
+      moduleDefinition.live.headerAssets || [];
+  },
+
+  resolveFooterAssets(moduleDefinition, req) {
+    return req.isAuthenticated() ?
+      moduleDefinition.admin.footerAssets || [] :
+      moduleDefinition.live.footerAssets || [];
   },
 
   // Determine whether or not to load a module,

@@ -3,6 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title>YO</title>
+    {{#each page.headerAssets}}
+      <link rel="stylesheet" type="text/css" href="{{.}}">
+    {{/each}}
   </head>
   <body>
     {{#if isAuthenticated}}
@@ -19,6 +22,9 @@
     <hr />
     {{#each page.modules}}
       <div>{{{renderInclude . ../req}}}</div>
+    {{/each}}
+    {{#each page.footerAssets}}
+      <script src="{{.}}"></script>
     {{/each}}
   </body>
 </html>
