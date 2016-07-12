@@ -12,3 +12,4 @@ child.stdout.on('data', (data) => {
 child.stderr.on('data', (data) => {
   console.log(data.toString());
 });
+console.log('info', 'Varnish listening on port ', port);

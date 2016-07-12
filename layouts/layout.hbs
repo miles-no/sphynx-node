@@ -21,10 +21,14 @@
     {{/if}}
     <hr />
     {{#each page.modules}}
-      <div>{{{renderInclude . ../req}}}</div>
+      {{{renderInclude . ../req}}}
     {{/each}}
     {{#each page.footerAssets}}
       <script src="{{.}}"></script>
     {{/each}}
+    {{#if isAuthenticated}}
+    <div id="kipp"></div>
+    <script src="http://localhost:3003/kipp.js"></script>
+    {{/if}}
   </body>
 </html>

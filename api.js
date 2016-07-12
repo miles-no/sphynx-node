@@ -1,7 +1,9 @@
 import express from 'express';
+import cors from 'cors';
 
 const app = express();
 
+app.use(cors());
 app.get('/pages/:path', (req, res) => {
   res.status(200).json({
     path: '/',
@@ -24,23 +26,15 @@ app.get('/moduledefinitions', (req, res) => {
     live: {
       url: 'http://localhost:3001/module1',
       headerAssets: [
-        'http://example.com/css1.css',
-        'http://example.com/css2.css',
       ],
       footerAssets: [
-        'http://example.com/js1.js',
-        'http://example.com/js2.js',
       ],
     },
     admin: {
       url: 'http://localhost:3001/module1/admin',
       headerAssets: [
-        'http://example.com/css1.css',
-        'http://example.com/css2.css',
       ],
       footerAssets: [
-        'http://example.com/js1.js',
-        'http://example.com/js2.js',
       ],
     },
   }, {
@@ -49,23 +43,15 @@ app.get('/moduledefinitions', (req, res) => {
     live: {
       url: 'http://localhost:3001/module2',
       headerAssets: [
-        'http://example.com/css1.css',
-        'http://example.com/css3.css',
       ],
       footerAssets: [
-        'http://example.com/js2.js',
-        'http://example.com/js3.js',
       ],
     },
     admin: {
       url: 'http://localhost:3001/module2/admin',
       headerAssets: [
-        'http://example.com/css1.css',
-        'http://example.com/css3.css',
       ],
       footerAssets: [
-        'http://example.com/js2.js',
-        'http://example.com/js3.js',
       ],
     }
   }]);

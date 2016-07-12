@@ -2,17 +2,10 @@ import cluster from 'cluster';
 
 if (cluster.isMaster) {
   require('./varnish');
-  cluster.fork({worker: 'backend'});
-  cluster.fork({worker: 'module-service'});
+  cluster.fork({worker: 'server'});
+  cluster.fork({worker: 'moduleService'});
   cluster.fork({worker: 'api'});
+  cluster.fork({worker: 'kipp'});
 } else {
-  if(process.env.worker === 'backend'){
-    require('./server');
-  }
-  if(process.env.worker === 'module-service'){
-    require('./moduleService');
-  }
-  if(process.env.worker === 'api'){
-    require('./api');
-  }
+  require('./' + process.env.worker);
 }
